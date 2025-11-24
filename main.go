@@ -10,11 +10,10 @@ func main() {
 	const conferenceTickets = 50
 	var remainingTickets int
 	remainingTickets = conferenceTickets
-	greetUsers(conferenceName) // function call
+	greetUsers(conferenceName, conferenceTickets, remainingTickets) // function call
 
 	// fmt.Println("We have ",conferenceTickets, " tickets and ",remainingTickets," are still available")
-	fmt.Printf("We have %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
-	fmt.Println("Get your tickets here to attend!")
+
 	bookings := []string{}
 	for {
 
@@ -64,17 +63,10 @@ func main() {
 
 			fmt.Printf("Thank you %v %v for  booking %v tickets. You will receive a confirmation email at %v \n", firstName, lastName, userTickets, email)
 			fmt.Println("======================================================================================================================================")
-
-			firstNames := []string{}
-			for _, booking := range bookings {
-				names := strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-
-			}
-
 			fmt.Printf("We have  %v remaining Tickets.\n", remainingTickets)
-			//fmt.Printf("These are all our bookings: %v\n", bookings)
-			fmt.Printf("The First names of  bookings: %v\n", firstNames)
+
+			// call function print firstName
+			printFirstNames(bookings)
 
 			if remainingTickets == 0 {
 				fmt.Println("Sorry, all tickets have been sold out!")
@@ -99,6 +91,20 @@ func main() {
 
 }
 
-func greetUsers(conferenceName string) {
+func greetUsers(conferenceName string, conferenceTickets int, remainingTickets int) {
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
+	fmt.Printf("We have %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
+	fmt.Println("Get your tickets here to attend!")
+}
+
+func printFirstNames(bookings []string) {
+	firstNames := []string{}
+	for _, booking := range bookings {
+		names := strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+
+	}
+	//fmt.Printf("These are all our bookings: %v\n", bookings)
+	fmt.Printf("The First names of  bookings: %v\n", firstNames)
+
 }
